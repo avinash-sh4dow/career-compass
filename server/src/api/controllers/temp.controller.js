@@ -4,8 +4,9 @@ const tempValidator = require("../validators/temp.validators");
 class TempController {
     static async addData(req, res) {
         try {
-            const payload = req.payload;
-            const validatedResult = await tempValidator.create.body.validate(payload);
+            const payload = req.body;
+            console.log(payload);
+            const validatedResult = tempValidator.create.body.validate(payload);
             if (!validatedResult.error) {
                 await TempService.add(validatedResult.value);
                 res.status(200).send({ 
@@ -18,7 +19,6 @@ class TempController {
                 });
             }
         } catch (error) {
-            console.error('Error in addData:', error);
             res.status(500).send({
                 message: "Internal server error",
                 error: error.message
@@ -28,7 +28,7 @@ class TempController {
 
     static async getData(req, res) {
         try {
-            const data = await TempService.get();
+            const data = await TempService.getAll();
             res.status(200).send({
                 message: "got data",
                 data: data
