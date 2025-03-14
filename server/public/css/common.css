@@ -1,0 +1,16 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: monospace;
+}
+
+body {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+}
+
